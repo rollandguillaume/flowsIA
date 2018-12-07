@@ -1,0 +1,7 @@
+.idea/
+venv/
+__pycache__
+*.zip
+*.txt
+*.pdf
+*.xml

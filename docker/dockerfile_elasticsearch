@@ -1,0 +1,5 @@
+FROM elasticsearch:5.6.11
+
+
+RUN bin/elasticsearch-plugin install lang-python
+RUN echo "script.inline: true" >> config/elasticsearch.yml
