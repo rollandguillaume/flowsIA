@@ -26,7 +26,7 @@ On cherche à prédire le fait qu’un flow soit une alerte ou non, Pour cela on
 
 ### Docker
 - docker/
-  - permet de démarrer un [serveur ElasticSearch]((http://localhost:9200) et d’une [interface Kibana](http://localhost:5601)
+  - permet de démarrer un [serveur ElasticSearch](http://localhost:9200) et d’une [interface Kibana](http://localhost:5601)
 
 ### Conf.py
 
@@ -51,7 +51,7 @@ cd docker
 docker-compose up
 ````
 
-[Vérifier les configurations](#conf.py) et modifier au besoin.
+[Vérifier les configurations](#confpy) et modifier au besoin.
 
 
 Dans un second terminal, lancer le script Main.py.
