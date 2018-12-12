@@ -1,11 +1,11 @@
 
-goParsing = True
+goParsing = False
 goLearning = True
-
 fileNameResult = "resources/FRERET_ROLLAND.txt"
 
 
 # -----------DEV-ONLY----------------
+neighbors = 3
 # PARSER
 index = "flows"
 type = "flows"

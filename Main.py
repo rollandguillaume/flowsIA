@@ -24,21 +24,24 @@ def evaluation(datas, genTest):
     print("Total Alert:", nbAlert)
 
 
-
 start = datetime.now()
 
 # --------------PARSER-----------------
 if Conf.goParsing:
     print("goParsing")
+    print("~~~~~Parsing of ISCX_train~~~~~")
     Parser.initVectorisation("resources/ISCX_train/", Conf.indexVector)
     print("Vectorisation Training:", timeStamp(start))
+    print("~~~~~Parsing of evaluation~~~~~")
     Parser.initVectorisation("resources/evaluation/test/", Conf.indexVectorTest)
     print("Vectorisation Test:", timeStamp(start))
 
 # --------------LEARNING-----------------
 if Conf.goLearning:
     print("goLearning")
+    print("~~~~~Learning and Draw ROC curve~~~~~")
     learnWithRoc(Search.getAllByAppName("HTTPWeb"))
+    print("~~~~~Learning and Prediction~~~~~")
     evaluation(Search.getAllByAppName("HTTPWeb"), Search.getAllByIndex("evaluationtest"))
 
 

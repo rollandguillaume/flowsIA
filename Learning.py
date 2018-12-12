@@ -81,7 +81,7 @@ def testLearning(generatorTrain, generatorTest):
 def knnBasic(dataTrain, resultTrain, dataTest):
     print("KNN Learning...")
     start = datetime.now()
-    knn_classifier = OneVsRestClassifier(KNeighborsClassifier(n_neighbors=3))
+    knn_classifier = OneVsRestClassifier(KNeighborsClassifier(n_neighbors=Conf.neighbors))
     knn_classifier.fit(dataTrain, resultTrain)
     score_knn = knn_classifier.predict_proba(dataTest)
     print("End KNN Learning in:", datetime.now()-start)
@@ -106,5 +106,3 @@ def writeResultFile(score_knn):
     file.close()
     print("Write of", Conf.fileNameResult, "in", datetime.now()-start)
     return nbAlert
-
-
