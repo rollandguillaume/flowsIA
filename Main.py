@@ -30,11 +30,10 @@ start = datetime.now()
 # --------------PARSER-----------------
 if Conf.goParsing:
     print("goParsing")
-    print("Vectorisation Training:", timeStamp(start))
     Parser.initVectorisation("resources/ISCX_train/", Conf.indexVector)
-    print("Vectorisation Test:", timeStamp(start))
+    print("Vectorisation Training:", timeStamp(start))
     Parser.initVectorisation("resources/evaluation/test/", Conf.indexVectorTest)
-
+    print("Vectorisation Test:", timeStamp(start))
 
 # --------------LEARNING-----------------
 if Conf.goLearning:
@@ -44,6 +43,3 @@ if Conf.goLearning:
 
 
 print("~~~~~~~~~~~~~~~MAIN TOTAL TIME~~~~~~~~~~~~~~~\n", timeStamp(start))
-
-
-
