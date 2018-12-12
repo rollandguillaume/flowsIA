@@ -2,11 +2,13 @@ from datetime import datetime
 import Conf
 import traceback
 
-# rapport entre le port et la valeur théorique max du port
+# @param value la valeur du port a normaliser
+# @return normalisation par rapport entre le port @value et la valeur théorique max du port
 def _portType(value):
     return value / Conf.maxPort
 
-# tri suivant la classe de l'adresse ip
+# @param ip adresse ip a normaliser
+# @return une valeur entre 0 et 1 en suivant la classe de l'adresse ip @ip
 def _ipClass(ip):
     value = int(ip.split(".")[0])
     if (value >= 1 and value <= 126):
@@ -22,14 +24,17 @@ def _ipClass(ip):
     else:
         return 0
 
-# timestamp entre le debut et la fin de l'envoi du flow
+# @param start date de debut
+# @param stop date de fin
+# @return timestamp entre le debut et la fin de l'envoi du flow
 def _elapsedTime(start, stop):
     format = "%Y-%m-%dT%H:%M:%S"
     dstart = datetime.strptime(start, format).timestamp()
     dstop = datetime.strptime(stop, format).timestamp()
     return (dstop - dstart)
 
-# rapport entre une taille de payload (sous forme d'histogramme) et la somme de la payload
+# @param payload
+# @return un tableau (histogramme) : rapport entre une taille de payload et la somme totale de la payload
 def _payloadConverter(payload):
     tabVal = [0] * 8
 
@@ -48,7 +53,8 @@ def _payloadConverter(payload):
 
     return tabVal
 
-
+# @param tabVal le tableau histogramme a normaliser
+# @param value le prochain byte a ranger dans @tabVal
 def _payloadAiguillage(tabVal, value):
     if (value >= 0 and value <= 31):
         tabVal[0] += 1
@@ -67,7 +73,14 @@ def _payloadAiguillage(tabVal, value):
     elif (value > 224 and value < 256):
         tabVal[7] += 1
 
-
+# fonction de normalisation d'un String @values
+# dont les données sont entre le separateur @separator
+# et dont la liste des données potentielles est @comparatifTable
+# exemple de la liste des flags d'un flow :
+# @value : "S,R,P"
+# @separator : ","
+# @comparatifTable : ["S","R","P","A","F","Illegal7","Illegal8"]
+# @return : [1,1,1,0,0,0,0]
 def _binarisation(values, separator, comparatifTable):
     result = [0] * len(comparatifTable)
 
@@ -81,7 +94,7 @@ def _binarisation(values, separator, comparatifTable):
 
     return result
 
-
+# @return le rapport entre deux valeurs @val1 et @val2
 def rapport(val1, val2):
     calcul = float(val1)
     if (val2 != 0):
@@ -89,12 +102,17 @@ def rapport(val1, val2):
     return calcul
 
 # conversion tag "normal" en "0" et "Alerte" en "1"
+# @param flow le flows a trasformer
+# @return 0 si le flow est "normal", 1 sinon
 def tag(flow):
     if (flow["Tag"] == Conf.normalTag):
         return 0
     return 1
 
-
+# fonction de vectorisation d'un flow
+# @param flow le flow a vectoriser
+# @param indexTarget l'index de destination pour elasticsearch
+# @return le flows vectorisé
 def vectorisationOneFlow(flow, indexTarget):
     vector = {}
 
@@ -152,4 +170,3 @@ def vectorisationOneFlow(flow, indexTarget):
         traceback.print_exc()
 
     return vector
-

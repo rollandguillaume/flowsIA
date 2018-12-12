@@ -19,6 +19,12 @@ def draw_log_nb_flow_by_log_nb_packet():
 
 
 # https://stackoverflow.com/questions/25009284/how-to-plot-roc-curve-in-python
+# permet de dessiner la courbe ROC de l'apprentissage
+# en ayant sa presicion (auc) sur le graphe
+# @param X_test données d'entrainement
+# @param y_test résultat attendu
+# @param clf systeme de prediction (knn ici)
+# @param score_knn résultat de prediction
 def drawRoc(X_test, y_test, clf, score_knn):
     print("Draw ROC Curve...")
 

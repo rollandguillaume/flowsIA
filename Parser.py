@@ -6,6 +6,12 @@ import os
 import Conf
 import Vector
 
+# fonction de creation d'id unique pour une donnée
+# en utilisant des informations sur la donnée
+# et surtout le timestamp de l'instant t
+# pour s'assurer de l'unicité de l'id retourné
+# @param value flows
+# @return id sous forme de hash
 def createId(value):
     key = value["startDateTime"] \
           + value["source"] + str(value["sourcePort"]) \
@@ -14,7 +20,14 @@ def createId(value):
           + str(datetime.now().timestamp())
     return hashlib.sha256(key.encode()).hexdigest()
 
-# https://python101.pythonlibrary.org/chapter31_lxml.html
+# @source : https://python101.pythonlibrary.org/chapter31_lxml.html
+# fonction de conversion d'un fichier xml
+# contenant des informations sur des flows
+# en dictionnaire
+# en leur attribuant un index et un type
+# pour un serveur elasticsearch
+# @param xmlFile input file
+# @return dictionnaire des flows du fichier
 def parseXML(xmlFile):
     fobj = open(xmlFile, "rb")
     root = etree.fromstring(fobj.read())
@@ -46,6 +59,16 @@ def parseXML(xmlFile):
         flow_dict = {}
     return flows
 
+# fonction de conversion d'un fichier xml
+# contenant des informations sur des flows
+# en dictionnaire
+# en leur attribuant un index et un type
+# pour un serveur elasticsearch
+#
+# les données du fichier d'entree sont normaliser sous forme d'un vecteur
+# @param xmlFile input file
+# @param indexTarget l'index souhaité pour le serveur elasticsearch
+# @return dictionnaire des flows vectorisé du fichier d'entré
 def parseXMLToVector(xmlFile, indexTarget):
     fobj = open(xmlFile, "rb")
     root = etree.fromstring(fobj.read())
@@ -74,8 +97,10 @@ def parseXMLToVector(xmlFile, indexTarget):
         flow_dict = {}
     return flows
 
-
-
+# point d'entrée du parsing
+# pour l'insertion des données bruts
+# d'une liste de fichier xml
+# dans un serveur elasticsearch
 def initParser():
     es = Elasticsearch()
     sourceFolder = "resources/ISCX_train/"
@@ -94,7 +119,12 @@ def initParser():
     end = datetime.now()
     print(end-start)
 
-
+# point d'entrée du parsing
+# pour l'insertion des données à vectoriser
+# d'une liste de fichier xml contenue dans @sourceFolder
+# dans un serveur elasticsearch à l'index @indexTarget
+# @param sourceFolder le dossier source contenant les données a vectoriser
+# @param indexTarget index de stockage des données sur elasticsearch
 def initVectorisation(sourceFolder, indexTarget):
     es = Elasticsearch()
 

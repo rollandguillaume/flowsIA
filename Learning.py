@@ -4,7 +4,17 @@ import Conf
 from datetime import datetime
 import random
 
-
+# fonction d'initialisation d'evaluation d'un classifieur :
+# - prise des données d'entrées @generator
+# - melange des données
+# - 2/3 des données definies comme données d'entrainement
+# - 1/3 des données definies comme données de test
+# @param generator les données totales d'entrée
+# @return 4 listes :
+# - liste des données selectionné d'entrainement
+# - liste des resultats de la liste d'entrainement
+# - liste des données selectionné pour les tests
+# - liste des resultats attendu lors de la prediction sur la liste des tests
 def initLearn(generator):
     print("Starting...")
     datas = list(generator)
@@ -38,7 +48,8 @@ def initLearn(generator):
 
     return dataTrain, resultTrain, dataTest, resultTest
 
-
+# fonction de verification entre les quantites de données d'entrainement ou de test
+# et leur liste associe de resultat attendu
 def checkDatas(dataTrain, resultTrain, dataTest, resultTest):
     print()
     print("~~~~~~~~~~~~~~CHECK~~~~~~~~~~~~~~")
@@ -47,7 +58,9 @@ def checkDatas(dataTrain, resultTrain, dataTest, resultTest):
     print("Total data length", (len(dataTrain) + len(dataTest)))
     print()
 
-# fonction d'evaluation du projet
+# point d'entree de la fonction d'evaluation du projet
+# @param generatorTrain la liste des données d'entrainement du predicteur
+# @param generatorTest la liste des données a evaluer par le predicteur
 def testLearning(generatorTrain, generatorTest):
     print("Starting...")
     start = datetime.now()
@@ -77,7 +90,10 @@ def testLearning(generatorTrain, generatorTest):
 
     return dataTrain, resultTrain, dataTest
 
-
+# fonction de lancement du classifieur
+# @param dataTrain les données d'entrainement
+# @param resultTrain les resultats attendus
+# @param les données sur lesquelles la prediction est demandé
 def knnBasic(dataTrain, resultTrain, dataTest):
     print("KNN Learning...")
     start = datetime.now()
@@ -88,7 +104,9 @@ def knnBasic(dataTrain, resultTrain, dataTest):
 
     return knn_classifier, score_knn
 
-
+# fonction d'ecriture des resultats d'un classifieur
+# dans un fichier de sortie (Conf.py)
+# @param score_knn les resultats de prediction du classifieur et leur probabilité associé
 def writeResultFile(score_knn):
     start = datetime.now()
     file = open(Conf.fileNameResult, "w")
