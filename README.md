@@ -1,4 +1,7 @@
 # FlowsIA
+
+[lien vers Github](https://github.com/rollandguillaume/flowsIA)
+
 ## But du projet
 
 On cherche à prédire le fait qu’un flow soit une alerte ou non, Pour cela on dispose d’un ensemble de données de flows.
@@ -93,11 +96,11 @@ Suivre [la procédure d'utilisation](#procedure-dutilisation) au préalable. Eve
 
   Il est possible de modifier une donnée du classifieur permettant de modifier le comportement de prédiction, il s'agit du **nombre de voisin**.
   Un nombre impaire de voisin est plus intéressant pour éviter d’avoir un choix aléatoire en cas d’égalité entre le nombre de voisin “Normal” et “Alerte” trouvé.
-  Dans notre cas, le nombre d'alerte est restreint, augmenter le nombre de voisin aura donc tendance à faire remonter plus d'alerte au risque de remonter de fausse alerte. Inversement, un nombre trop faible de voisin augmenterais la précision au risque de laisser passer des alertes. Un compromis est donc nécessaire.
+  **Dans notre cas**, le nombre d'alerte est restreint, augmenter le nombre de voisin aura donc tendance à faire remonter plus d'alerte au risque de remonter de fausses alertes. Inversement, un nombre trop faible de voisin augmenterais la précision au risque de laisser passer des alertes. Un **compromis est donc nécessaire**.
 
 4. Tracer de la courbe **ROC**
 
-  La courbe ROC permet d'évaluer la précision du classifieur, plus l'aire sous la courbe (**AUC**) est proche de **1** et plus le classifieur est intéressant.
+  La courbe ROC permet d'évaluer l'intérêt d'un classifieur, plus l'aire sous la courbe (**AUC**) est proche de **1** et plus le classifieur est intéressant.
 
   ````
   AUC = 0.995
@@ -107,7 +110,7 @@ Suivre [la procédure d'utilisation](#procedure-dutilisation) au préalable. Eve
 
   ![image de la courbe ROC](/resources/images/3_ROCcurveWithAUC.png)
 
-  **NB** : Avoir une bonne précision de signifie pas que notre classifieur detecte tout. En effet, parmi les données mis à disposition, il y a très peu d'alertes donc si le classifieur trouve bien les flows normals, il peut n'en être rien des alertes.
+  **NB** : Avoir une bonne précision ne signifie pas que notre classifieur detecte tout. En effet, parmi les données mis à disposition, il y a très peu d'alertes donc si le classifieur trouve bien les flows normals, il peut n'en être rien des alertes.
 
 5. Lancement de la prédiction sur les données à évaluer
 
@@ -137,6 +140,8 @@ Suivre [la procédure d'utilisation](#procedure-dutilisation) au préalable. Eve
   1.0 0
   ...
   ````
+
+  Encore une fois, le nombre de "Normal" est très important donc le classifieur à un indice de confiance très élevés lorsqu'il prédit qu'un flows est normal ; alors que lorsqu'il prédit une "Alerte", l'indice de confiance n'est pas de 100% dû au fait qu'il peut avoir du mal à trouver un ou plusieurs flows similaires à celui évalué.
 
 7. Temps d'éxécution *juste pour information*
 
