@@ -89,10 +89,10 @@ Suivre [la procédure d'utilisation](#procedure-dutilisation) au préalable. Eve
   - la liste des résultats attendu des vecteurs de test
 
   Il est donc possible d'établir la **matrice de confusion** et donc la **précision** :
-  - les données évaluées à Vrai réellement Vrai
+  - les données évaluées à Vrai réellement Vraie
   - les données évaluées à Vrai mais Fausse
   - les données évaluées à Faux réellement Fausse
-  - les données évaluées à Faux mais Vrai
+  - les données évaluées à Faux mais Vraie
 
   Il est possible de modifier une donnée du classifieur permettant de modifier le comportement de prédiction, il s'agit du **nombre de voisin**.
   Un nombre impaire de voisin est plus intéressant pour éviter d’avoir un choix aléatoire en cas d’égalité entre le nombre de voisin “Normal” et “Alerte” trouvé.
