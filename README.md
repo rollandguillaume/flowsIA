@@ -63,6 +63,32 @@ python3 Main.py
 
 //TODO
 
+### Description de notre vectorisation :
+
+On as une liste de donnée soit normalisée ou soit binaire. Les valeurs sont donc entre 0 et 1 quoi qu’il arrive. La plupart des données sont présente pour les parties source et destination. 
+
+Les valeurs binaire:
+- Tous les flags HTTP : "S","R","P","A","F","Illegal7","Illegal8" qui sont présent (x=1) ou non (x=0) dans les flows.
+- La direction : "L2R", "L2L", "R2L", "R2R". Si la direction est “L2R” par exemple, cette valeur sera à un et les 3 autres à 0.
+- Adresse IP triées selon leur classe. Pour AAA.BBB.CCC.DDD , on a :
+  - Classe A (x=0.2) si 0 < AAA <= 126
+  - Classe B (x=0.4) si 126 < AAA <= 191
+  - Classe C (x=0.6) si 191 < AAA <= 223
+  - Classe D (x=0.8) si 223 < AAA <= 239
+  - Classe E (x=1) si 239 < AAA <= 250
+- La payload à partir de laquelle on forme un histogramme qui présente le nombre de bytes ayant une taille compris entre des intervals de valeurs définis (0..31 / 32..63 / … / 224..255). 
+
+Les valeurs normalisée :
+- Le port : On normalise la valeur du port en le divisant par la valeur de port maximale, x = port / 65535 
+
+
+Autres valeurs :
+- Timestamps : Différence entre date de fin et date de début.
+- Rapport entre le nombre de paquet de la source et celui de la destination
+- Rapport entre le nombre de flow de la source et celui de la destination
+- 0 ou 1 si le flow est une attaque (valeur séparée du vecteur)
+
+
 
 ## Dev only
 ### datafield configuration
