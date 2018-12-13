@@ -64,7 +64,7 @@ python3 Main.py
 
 Un exemple d'utilisation est présenté dans la partie suivante avec quelques explications.
 
-## Cas d'utilisation
+## Cas d'utilisation
 
 Suivre [la procédure d'utilisation](#procedure-dutilisation) au préalable. Eventuellement [la partie : vectorisation choisie ](#description-de-notre-vectorisation)
 
@@ -117,7 +117,7 @@ Suivre [la procédure d'utilisation](#procedure-dutilisation) au préalable. Eve
   Dans ce contexte, toutes les données d'apprentissage sont utilisées pour faire apprendre le classifieur afin de prédire les résultats sur les données à évaluer.
 
   ````
-  nobre d'alerte = 12
+  nombre d'alerte = 12
   ````
   Le nombre d'alerte remonté varie parfois bien que les données d'apprentissage soit identiques d'une expérience à l'autre, résultats déjà obtenus entre 11 et 14 alertes.
 
@@ -156,11 +156,11 @@ Les valeurs binaire :
 - Tous les flags HTTP : "S", "R", "P", "A", "F", "Illegal7", "Illegal8" qui sont présent (x=1) ou non (x=0) dans les flows.
 - La direction : "L2R", "L2L", "R2L", "R2R". Si la direction est “L2R” par exemple, cette valeur sera à 1 et les trois autres à 0.
 - Adresse IP triées selon leur classe. Pour AAA.BBB.CCC.DDD , on a :
-  - Classe A (x=0.2) si 0 < AAA <= 126
+  - Classe A (x=0.2) si 0   < AAA <= 126
   - Classe B (x=0.4) si 126 < AAA <= 191
   - Classe C (x=0.6) si 191 < AAA <= 223
   - Classe D (x=0.8) si 223 < AAA <= 239
-  - Classe E (x=1) si 239 < AAA <= 250
+  - Classe E (x=1)   si 239 < AAA <= 250
 - La payload à partir de laquelle on forme un histogramme qui présente le nombre de bytes ayant une taille comprise entre des intervals de valeurs définis (0..31 / 32..63 / … / 224..255).
 
 Les valeurs normalisées :
