@@ -59,11 +59,11 @@ Dans un second terminal, lancer le script Main.py.
 python3 Main.py
 ````
 
-Un exemple d'utilisation est présenter dans la prtie suivante avec quelques explications.
+Un exemple d'utilisation est présenté dans la partie suivante avec quelques explications.
 
 ## Cas d'utilisation
 
-Suivre [la procédure d'utilisation](#procedure-dutilisation) au préalable.
+Suivre [la procédure d'utilisation](#procedure-dutilisation) au préalable. Eventuellement [la partie : vectorisation choisie ](#description-de-notre-vectorisation)
 
 1. Vectorisation des **547347** données d'apprentissage
 
@@ -80,6 +80,20 @@ Suivre [la procédure d'utilisation](#procedure-dutilisation) au préalable.
 3. Evaluation de la précision du classifieur **KNN**
 
   Parmi toutes les données d'apprentissage (celles dont on connait à l'avance le résultat "Alerte" ou non donc) ; on choisi 2/3 d'entre elles pour permettre au classifieur d'apprendre de ces données afin de prédire les résultats sur le tiers restant.
+
+  A la fin de cette opération, 2 listes intéressantes entre autres sont à disposition :
+  - la liste des résultats prédit sur les vecteurs de test
+  - la liste des résultats attendu des vecteurs de test
+
+  Il est donc possible d'établir la **matrice de confusion** et donc la **précision** :
+  - les données évaluées à Vrai réellement Vrai
+  - les données évaluées à Vrai mais Fausse
+  - les données évaluées à Faux réellement Fausse
+  - les données évaluées à Faux mais Vrai
+
+  Il est possible de modifier une donnée du classifieur permettant de modifier le comportement de prédiction, il s'agit du **nombre de voisin**.
+  Un nombre impaire de voisin est plus intéressant pour éviter d’avoir un choix aléatoire en cas d’égalité entre le nombre de voisin “Normal” et “Alerte” trouvé.
+  Dans notre cas, le nombre d'alerte est restreint, augmenter le nombre de voisin aura donc tendance à faire remonter plus d'alerte au risque de remonter de fausse alerte. Inversement, un nombre trop faible de voisin augmenterais la précision au risque de laisser passer des alertes. Un compromis est donc nécessaire.
 
 4. Tracer de la courbe **ROC**
 
