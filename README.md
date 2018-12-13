@@ -152,7 +152,7 @@ Suivre [la procédure d'utilisation](#procedure-dutilisation) au préalable. Eve
 
 On a une liste de données soit normalisée soit binaire. Les valeurs sont donc entre 0 et 1 quoi qu’il arrive. La plupart des données sont présentes pour les parties source et destination.
 
-Les valeurs binaire :
+Les valeurs binaires :
 - Tous les flags HTTP : "S", "R", "P", "A", "F", "Illegal7", "Illegal8" qui sont présent (x=1) ou non (x=0) dans les flows.
 - La direction : "L2R", "L2L", "R2L", "R2R". Si la direction est “L2R” par exemple, cette valeur sera à 1 et les trois autres à 0.
 - Adresse IP triées selon leur classe. Pour AAA.BBB.CCC.DDD , on a :
