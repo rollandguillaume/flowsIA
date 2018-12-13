@@ -59,6 +59,8 @@ Dans un second terminal, lancer le script Main.py.
 python3 Main.py
 ````
 
+Un exemple d'utilisation est présenter dans la prtie suivante avec quelques explications.
+
 ## Cas d'utilisation
 
 Suivre [la procédure d'utilisation](#procedure-dutilisation) au préalable.
